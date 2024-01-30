@@ -38,6 +38,11 @@ public class MovieController {
         return service.findByName(name);
     }
 
+    @GetMapping("/new")
+    public List<Movie> getNewMovies() {
+        return service.findNew();
+    }
+
     @GetMapping
     public List<Movie> getAll() {
         return service.findAll();

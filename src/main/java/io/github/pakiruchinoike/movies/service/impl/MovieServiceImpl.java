@@ -1,5 +1,6 @@
 package io.github.pakiruchinoike.movies.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -53,6 +54,20 @@ public class MovieServiceImpl implements MovieService{
         });
 
         return movies;
+    }
+
+    @Override
+    public List<Movie> findNew() {
+        List<Movie> movies = repository.findAll();
+        List<Movie> newMovies = new ArrayList<Movie>();
+
+        for(int i = 0; i<movies.size(); i++) {
+            if(movies.get(i).getReview().isEmpty()) {
+                newMovies.add(movies.get(i));
+            }
+        }
+
+        return newMovies;
     }
 
     @Override
